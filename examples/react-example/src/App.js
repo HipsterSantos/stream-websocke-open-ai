@@ -6,6 +6,7 @@ class App extends React.Component {
 
     streamingURL = 'ec2-18-222-202-247.us-east-2.compute.amazonaws.com:9009';
     punctuateURL = ''; //<Add Punctuate URL HERE>
+    language = 'en';
 
     constructor(props) {
         super(props);
@@ -25,10 +26,9 @@ class App extends React.Component {
     handleStart() {
         {
             const streaming = this.state.streaming;
-            const language = 'hi';
             this.setText('Connecting to server..');
             const _this = this;
-            streaming.connect(this.streamingURL, language, function (action, id) {
+            streaming.connect(this.streamingURL, _this.language, function (action, id) {
                 console.log("Connected", id, 'action:', action);
                 if (action === SocketStatus.CONNECTED) {
                     console.log('Starting.....');
